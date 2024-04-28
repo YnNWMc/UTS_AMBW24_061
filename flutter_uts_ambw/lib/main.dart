@@ -21,7 +21,6 @@ class _MainAppState extends State<MainApp> {
   int _selectedIndex = 0; // Index untuk bottom navigation bar
 
   final List<Widget> _pages = [
-    
     HomeScreen(),
     DiscoveryScreen(),
     BookmarkScreen(),
@@ -38,9 +37,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner:
-          false, 
-
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           leading: const Icon(Icons.menu, color: Colors.amberAccent),
@@ -290,7 +287,8 @@ class _ImageCarouselState extends State<ImageCarousel> {
           ),
         ],
       ),
-      child: Stack( // pakai stack supaya bisa numpuk widget
+      child: Stack(
+        // pakai stack supaya bisa numpuk widget
         children: [
           CarouselSlider(
             options: CarouselOptions(
@@ -322,13 +320,15 @@ class _ImageCarouselState extends State<ImageCarousel> {
                                 child: Image.network(
                                   category.image,
                                   width: MediaQuery.of(context).size.width,
-                                  fit: BoxFit.cover, // untuk ngecover container yang ngecontain image
+                                  fit: BoxFit
+                                      .cover, // untuk ngecover container yang ngecontain image
                                 ),
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                  gradient: LinearGradient( // Linear Gradient untuk bikin overlay di atas image
-                                                            // supaya terlihat ada shadow dari bawah ke atas
+                                  gradient: LinearGradient(
+                                    // Linear Gradient untuk bikin overlay di atas image
+                                    // supaya terlihat ada shadow dari bawah ke atas
                                     begin: Alignment.bottomCenter,
                                     end: Alignment.topCenter,
                                     colors: [
@@ -384,8 +384,10 @@ class _ImageCarouselState extends State<ImageCarousel> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _currentIndex == index
-                        ? const Color.fromARGB(255, 255, 213, 0) // kalau indexnya sama dengan index yang lagi di loop
-                        : Colors.grey, // kalau indexnya beda dengan index yang lagi di loop
+                        ? const Color.fromARGB(255, 255, 213,
+                            0) // kalau indexnya sama dengan index yang lagi di loop
+                        : Colors
+                            .grey, // kalau indexnya beda dengan index yang lagi di loop
                   ),
                 );
               }),
@@ -412,7 +414,10 @@ Widget buildListView(BuildContext context, String title, List<dynamic> data,
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
                 title,
-                style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const Spacer(),
@@ -462,8 +467,8 @@ Widget buildMealDealsCard(Food food) {
     width: 200.0,
     margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
     decoration: BoxDecoration(
-      color: Colors.grey.withOpacity(0.1), 
-      borderRadius: BorderRadius.circular(8.0), 
+      color: Colors.grey.withOpacity(0.1),
+      borderRadius: BorderRadius.circular(15.0),
       border: Border.all(
         width: 2,
       ),
@@ -478,8 +483,10 @@ Widget buildMealDealsCard(Food food) {
             child: Image.network(
               food.image,
               height: 109.5,
-              width: double.infinity, // double.infinity ==> size dari container yang ngecontain image
-              fit: BoxFit.cover, // Supaya image cover box/container(pokok yang ngecontain image) dari image
+              width: double
+                  .infinity, // double.infinity ==> size dari container yang ngecontain image
+              fit: BoxFit
+                  .cover, // Supaya image cover box/container(pokok yang ngecontain image) dari image
             ),
           ),
           Positioned(
@@ -535,20 +542,19 @@ Widget buildMostPopularCard(Restaurant restaurant) {
     height: 200.0,
     margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
     decoration: BoxDecoration(
-      color: Colors.grey.withOpacity(0.1), 
-      borderRadius: BorderRadius.circular(8.0),
+      color: Colors.grey.withOpacity(0.1),
+      borderRadius: BorderRadius.circular(15.0),
       border: Border.all(
         width: 2,
       ),
     ),
     child: LayoutBuilder(
       builder: (context, constraints) {
-        double leftPadding =
-            constraints.maxWidth * 0.05; // Ambil width container supaya lebih gampang atur padding untuk size container yang beda"
-                                        // contoh buat listview yang di home dan di detail ukurannya beda, pakai persentase supaya
-                                        // paddingnya bisa disesuaikan dengan ukuran container
-        double topPadding =
-            constraints.maxHeight * 0.75; 
+        double leftPadding = constraints.maxWidth *
+            0.05; // Ambil width container supaya lebih gampang atur padding untuk size container yang beda"
+        // contoh buat listview yang di home dan di detail ukurannya beda, pakai persentase supaya
+        // paddingnya bisa disesuaikan dengan ukuran container
+        double topPadding = constraints.maxHeight * 0.75;
 
         return Stack(
           children: [
@@ -557,9 +563,11 @@ Widget buildMostPopularCard(Restaurant restaurant) {
                   const BorderRadius.vertical(top: Radius.circular(12.0)),
               child: Image.network(
                 restaurant.image,
-                width: double.infinity, // double.infinity ==> size dari container yang ngecontain image
+                width: double
+                    .infinity, // double.infinity ==> size dari container yang ngecontain image
                 height: 140.0,
-                fit: BoxFit.cover, // Supaya image cover box/container(pokok yang ngecontain image) dari image
+                fit: BoxFit
+                    .cover, // Supaya image cover box/container(pokok yang ngecontain image) dari image
               ),
             ),
             Padding(
@@ -603,15 +611,25 @@ Widget buildMostPopularCard(Restaurant restaurant) {
 }
 
 class DetailsPage extends StatelessWidget {
-  final List<dynamic> data; // dynamic data adalah tipe data yang bisa berubah-ubah
+  final List<dynamic>
+      data; // dynamic data adalah tipe data yang bisa berubah-ubah
   final String title;
 
   const DetailsPage({required this.data, required this.title}); // constructor
 
+// title:
+//               const Text('Sydney CBD', style: TextStyle(color: Colors.amber)),
+//           centerTitle: true,
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.amber),
+        ),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: buildListView(context, title, data, Axis.vertical, true,
