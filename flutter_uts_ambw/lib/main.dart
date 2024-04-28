@@ -1,8 +1,7 @@
-import 'dart:ffi';
-
+// UTS AMBW -- Yan Nathanael Witanto
+// NRP: C14210061
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_uts_ambw/category.dart';
 import 'package:flutter_uts_ambw/food.dart';
 import 'package:flutter_uts_ambw/restaurant.dart';
@@ -19,11 +18,10 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  int _selectedIndex = 0; // Define the selected index
-  Color originalColor = Colors.amber; // Define the original color
+  int _selectedIndex = 0; // Index untuk bottom navigation bar
 
   final List<Widget> _pages = [
-    // Replace with your actual screen widgets
+    
     HomeScreen(),
     DiscoveryScreen(),
     BookmarkScreen(),
@@ -41,12 +39,14 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner:
-          false, // Set to false to remove the debug banner
+          false, 
 
       home: Scaffold(
         appBar: AppBar(
-          leading: const Icon(Icons.menu, color: Colors.amber),
-          title: const Text('Sydney CBD'),
+          leading: const Icon(Icons.menu, color: Colors.amberAccent),
+          title:
+              const Text('Sydney CBD', style: TextStyle(color: Colors.amber)),
+          centerTitle: true,
         ),
         drawer: Drawer(
           child: ListView(
@@ -54,7 +54,7 @@ class _MainAppState extends State<MainApp> {
             children: const <Widget>[
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.amber,
+                  color: Colors.amberAccent,
                 ),
                 child: Text('Sydney CBD'),
               ),
@@ -86,7 +86,7 @@ class _MainAppState extends State<MainApp> {
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
           unselectedItemColor: Colors.grey,
-          selectedItemColor: originalColor,
+          selectedItemColor: Colors.amberAccent,
           onTap: _onItemTapped,
           items: const [
             BottomNavigationBarItem(
@@ -118,53 +118,71 @@ class _MainAppState extends State<MainApp> {
   }
 }
 
-// Replace the following with your actual screen widgets
+// Kalau mau pakai assets/images bisa atur di pubspec.yaml
 class HomeScreen extends StatelessWidget {
   List<Category> foodStyle = [
     Category(
-        image: 'https://asianinspirations.com.au/wp-content/uploads/2018/07/R00067_Tom-Yum-Goong.jpg',
+        image:
+            'https://asianinspirations.com.au/wp-content/uploads/2018/07/R00067_Tom-Yum-Goong.jpg',
         name: 'Tom Yum Goong',
         style: 'Thai'),
     Category(
-        image: 'https://cdn0-production-images-kly.akamaized.net/i1CKcu1ErcEIdJegAf--eDxiygE=/0x0:1000x563/1200x675/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/4518333/original/007291800_1690604915-shutterstock_1940048218.jpg',
+        image:
+            'https://cdn0-production-images-kly.akamaized.net/i1CKcu1ErcEIdJegAf--eDxiygE=/0x0:1000x563/1200x675/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/4518333/original/007291800_1690604915-shutterstock_1940048218.jpg',
         name: 'Pasta Carbonara',
         style: 'Italian'),
     Category(
-        image: 'https://cdn0-production-images-kly.akamaized.net/jAhRHll_RQBlFGXC18vg2VpRWZ0=/0x120:3000x1811/1200x675/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3282059/original/075075700_1604028408-shutterstock_1788721670.jpg',
+        image:
+            'https://cdn0-production-images-kly.akamaized.net/jAhRHll_RQBlFGXC18vg2VpRWZ0=/0x120:3000x1811/1200x675/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3282059/original/075075700_1604028408-shutterstock_1788721670.jpg',
         name: 'Kari Rendang',
         style: 'Indonesian'),
     Category(
-        image: 'https://media-cdn.tripadvisor.com/media/photo-s/1c/7a/c2/86/maki-roll-set-40-piece.jpg',
+        image:
+            'https://media-cdn.tripadvisor.com/media/photo-s/1c/7a/c2/86/maki-roll-set-40-piece.jpg',
         name: 'Sushi',
         style: 'Japanese'),
   ];
   List<Food> mealDeals = [
     Food(
-        image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFbK-PsTUcOTt7ef22buzJBjaFqRSz48TZFZYaYqjKfunrc-Qfbf2_GcosMWiwdy9Aa5yA9utzIb1dgN69LlPdXCwO3KIasxdpH_0KM4YBpGhUa_zV8H4QF8lDzVzc1diUPZkGb2l0-E2P5IR2qW8u1hPJCwzRDJh-vjLr6tQYqiIipOvotaepHPvFQw/s2084/K-Cheese%20For%20Media-01.jpg',
+        image:
+            'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFbK-PsTUcOTt7ef22buzJBjaFqRSz48TZFZYaYqjKfunrc-Qfbf2_GcosMWiwdy9Aa5yA9utzIb1dgN69LlPdXCwO3KIasxdpH_0KM4YBpGhUa_zV8H4QF8lDzVzc1diUPZkGb2l0-E2P5IR2qW8u1hPJCwzRDJh-vjLr6tQYqiIipOvotaepHPvFQw/s2084/K-Cheese%20For%20Media-01.jpg',
         name: 'Shin Tae Yong Deal',
         price: 10.0),
     Food(
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6q7p51I-EeJ3YxRjymo2s0HR_C9XAZz7CkqW4FY_SBQ&s',
+        image:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6q7p51I-EeJ3YxRjymo2s0HR_C9XAZz7CkqW4FY_SBQ&s',
         name: 'Pizza Heart Deal',
         price: 20.0),
     Food(
-        image: 'https://ayamkeprabon.com/data/foto_berita/paket%20geprek%20jumbo%20matah.jpg',
+        image:
+            'https://ayamkeprabon.com/data/foto_berita/paket%20geprek%20jumbo%20matah.jpg',
         name: 'Geprek Jumbo Hemat',
         price: 30.0),
     Food(
-        image: 'https://weelicious.com/wp-content/uploads/2009/04/Chicken-Meatballs-with-Mini-Wheel-Pasta-7.jpg',
+        image:
+            'https://weelicious.com/wp-content/uploads/2009/04/Chicken-Meatballs-with-Mini-Wheel-Pasta-7.jpg',
         name: 'Pasta Mini',
         price: 40.0),
     Food(
-        image: 'https://mcdonaldsblog.in/wp-content/uploads/2021/12/Cheer-on-with-McDonalds-match-party-company.jpg',
+        image:
+            'https://mcdonaldsblog.in/wp-content/uploads/2021/12/Cheer-on-with-McDonalds-match-party-company.jpg',
         name: 'U-23 Deal',
         price: 30.0),
     Food(
-        image: 'https://cdn1.clickthecity.com/wp-content/uploads/2023/04/12104439/McDonalds-McNuggets-Meal-Meets-BT21-is-here-starting-April-15-1024x1024.jpg',
+        image:
+            'https://cdn1.clickthecity.com/wp-content/uploads/2023/04/12104439/McDonalds-McNuggets-Meal-Meets-BT21-is-here-starting-April-15-1024x1024.jpg',
         name: 'BT21 Combo',
         price: 40.0),
-    Food(image: 'https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Corndogs-7832ef6.jpg?quality=90&resize=556,505', name: 'Food X', price: 30.0),
-    Food(image: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/6/12/3/FNM070116_Penne-with-Vodka-Sauce-and-Mini-Meatballs-recipe_s4x3.jpg.rend.hgtvcom.1280.1280.suffix/1465939620872.jpeg', name: 'Food Z', price: 40.0),
+    Food(
+        image:
+            'https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Corndogs-7832ef6.jpg?quality=90&resize=556,505',
+        name: 'Food X',
+        price: 30.0),
+    Food(
+        image:
+            'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/6/12/3/FNM070116_Penne-with-Vodka-Sauce-and-Mini-Meatballs-recipe_s4x3.jpg.rend.hgtvcom.1280.1280.suffix/1465939620872.jpeg',
+        name: 'Food Z',
+        price: 40.0),
   ];
   List<Restaurant> mostPopular = [
     Restaurant(
@@ -265,14 +283,14 @@ class _ImageCarouselState extends State<ImageCarousel> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1), // Shadow color
-            spreadRadius: 2, // Spread radius
-            blurRadius: 4, // Blur radius
-            offset: const Offset(0, 2), // Shadow offset (x, y)
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 4,
+            offset: const Offset(0, 2), // buat shadow container
           ),
         ],
       ),
-      child: Stack(
+      child: Stack( // pakai stack supaya bisa numpuk widget
         children: [
           CarouselSlider(
             options: CarouselOptions(
@@ -291,30 +309,30 @@ class _ImageCarouselState extends State<ImageCarousel> {
                 builder: (BuildContext context) {
                   return Container(
                     height: MediaQuery.of(context).size.height *
-                        0.3, // Adjust the height as needed
+                        0.3, // Atur height berdasarkan ukuran layar supaya lebih gampang scalenya
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           height: MediaQuery.of(context).size.height *
-                              0.26, // Adjust the height as needed
+                              0.26, // Atur height berdasarkan ukuran layar supaya lebih gampang scalenya
                           child: Stack(
                             children: [
                               ClipRRect(
                                 child: Image.network(
                                   category.image,
                                   width: MediaQuery.of(context).size.width,
-                                  fit: BoxFit
-                                      .cover, // Ensure the image covers the container
+                                  fit: BoxFit.cover, // untuk ngecover container yang ngecontain image
                                 ),
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                  gradient: LinearGradient(
+                                  gradient: LinearGradient( // Linear Gradient untuk bikin overlay di atas image
+                                                            // supaya terlihat ada shadow dari bawah ke atas
                                     begin: Alignment.bottomCenter,
                                     end: Alignment.topCenter,
                                     colors: [
-                                      Colors.black.withOpacity(0.2),
+                                      Colors.black.withOpacity(0.6),
                                       Colors.transparent,
                                     ],
                                   ),
@@ -340,7 +358,8 @@ class _ImageCarouselState extends State<ImageCarousel> {
               children: [
                 Text(
                   widget.categories[_currentIndex].name,
-                  style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
                 ),
                 Text(
                   widget.categories[_currentIndex].style,
@@ -350,7 +369,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
             ),
           ),
 
-          // Dots indicator
+          // Untuk buat Dot indicator di Carousel Slider
           Positioned(
             bottom: 16.0,
             left: 340.0,
@@ -365,8 +384,8 @@ class _ImageCarouselState extends State<ImageCarousel> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _currentIndex == index
-                        ? const Color.fromARGB(255, 0, 0, 0)
-                        : Colors.grey,
+                        ? const Color.fromARGB(255, 255, 213, 0) // kalau indexnya sama dengan index yang lagi di loop
+                        : Colors.grey, // kalau indexnya beda dengan index yang lagi di loop
                   ),
                 );
               }),
@@ -378,7 +397,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
   }
 }
 
-// List View Most Popular + Meal Deals
+// List View Builder buat Most Popular + Meal Deals
 Widget buildListView(BuildContext context, String title, List<dynamic> data,
     Axis scrollDirection, bool isDetailsPage, double height) {
   return Column(
@@ -393,7 +412,7 @@ Widget buildListView(BuildContext context, String title, List<dynamic> data,
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
                 title,
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
             ),
             const Spacer(),
@@ -401,12 +420,11 @@ Widget buildListView(BuildContext context, String title, List<dynamic> data,
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: TextButton(
                 onPressed: () {
-                  // Navigate to the details page
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailsPage(
-                        data: data, // Pass your data here
+                        data: data, // Data yang mau di send ke detailspage
                         title: title,
                       ),
                     ),
@@ -431,7 +449,6 @@ Widget buildListView(BuildContext context, String title, List<dynamic> data,
             } else if (data[index] is Food) {
               return buildMealDealsCard(data[index]);
             }
-            return Container(); // Handle other types (if needed)
           },
         ),
       ),
@@ -439,13 +456,14 @@ Widget buildListView(BuildContext context, String title, List<dynamic> data,
   );
 }
 
-Widget buildMealDealsCard(dynamic item) {
+// Card Builder buat meal deals
+Widget buildMealDealsCard(Food food) {
   return Container(
     width: 200.0,
     margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
     decoration: BoxDecoration(
-      color: Colors.grey[200],
-      borderRadius: BorderRadius.circular(12.0),
+      color: Colors.grey.withOpacity(0.1), 
+      borderRadius: BorderRadius.circular(8.0), 
       border: Border.all(
         width: 2,
       ),
@@ -458,10 +476,10 @@ Widget buildMealDealsCard(dynamic item) {
             borderRadius:
                 const BorderRadius.vertical(top: Radius.circular(12.0)),
             child: Image.network(
-              item.image,
+              food.image,
               height: 109.5,
-              width: double.infinity,
-              fit: BoxFit.cover,
+              width: double.infinity, // double.infinity ==> size dari container yang ngecontain image
+              fit: BoxFit.cover, // Supaya image cover box/container(pokok yang ngecontain image) dari image
             ),
           ),
           Positioned(
@@ -483,7 +501,7 @@ Widget buildMealDealsCard(dynamic item) {
                   ),
                   SizedBox(width: 4.0),
                   Text(
-                    'Hot', // Customize the badge text
+                    'Hot', // Bikin Badge
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
@@ -496,11 +514,11 @@ Widget buildMealDealsCard(dynamic item) {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
-              item.name,
+              food.name,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             Text(
-              'Price: \$${item.price.toStringAsFixed(2)}',
+              'Price: \$${food.price.toStringAsFixed(2)}',
               style: const TextStyle(color: Colors.grey),
             ),
           ]),
@@ -510,14 +528,15 @@ Widget buildMealDealsCard(dynamic item) {
   );
 }
 
+// Card Builder buat most popular
 Widget buildMostPopularCard(Restaurant restaurant) {
   return Container(
     width: 300.0,
     height: 200.0,
     margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
     decoration: BoxDecoration(
-      color: Colors.grey[200],
-      borderRadius: BorderRadius.circular(12.0),
+      color: Colors.grey.withOpacity(0.1), 
+      borderRadius: BorderRadius.circular(8.0),
       border: Border.all(
         width: 2,
       ),
@@ -525,9 +544,11 @@ Widget buildMostPopularCard(Restaurant restaurant) {
     child: LayoutBuilder(
       builder: (context, constraints) {
         double leftPadding =
-            constraints.maxWidth * 0.05; // 4% of container's width
+            constraints.maxWidth * 0.05; // Ambil width container supaya lebih gampang atur padding untuk size container yang beda"
+                                        // contoh buat listview yang di home dan di detail ukurannya beda, pakai persentase supaya
+                                        // paddingnya bisa disesuaikan dengan ukuran container
         double topPadding =
-            constraints.maxHeight * 0.75; // 54% of container's height
+            constraints.maxHeight * 0.75; 
 
         return Stack(
           children: [
@@ -536,9 +557,9 @@ Widget buildMostPopularCard(Restaurant restaurant) {
                   const BorderRadius.vertical(top: Radius.circular(12.0)),
               child: Image.network(
                 restaurant.image,
-                width: double.infinity, // Use the container's width
+                width: double.infinity, // double.infinity ==> size dari container yang ngecontain image
                 height: 140.0,
-                fit: BoxFit.cover, // Ensure the image covers the container
+                fit: BoxFit.cover, // Supaya image cover box/container(pokok yang ngecontain image) dari image
               ),
             ),
             Padding(
@@ -582,11 +603,10 @@ Widget buildMostPopularCard(Restaurant restaurant) {
 }
 
 class DetailsPage extends StatelessWidget {
-  final List<dynamic> data;
+  final List<dynamic> data; // dynamic data adalah tipe data yang bisa berubah-ubah
   final String title;
 
-  DetailsPage({required this.data, required this.title});
-//           buildListView('Most Popular', mostPopular, Axis.vertical),
+  const DetailsPage({required this.data, required this.title}); // constructor
 
   @override
   Widget build(BuildContext context) {
