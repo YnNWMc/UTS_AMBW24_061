@@ -1,7 +1,7 @@
 class Category {
   final String image;
   final String name;
-  final String style; // You can store an image URL or asset path here
+  final String style;
 
   Category({
     required this.image,

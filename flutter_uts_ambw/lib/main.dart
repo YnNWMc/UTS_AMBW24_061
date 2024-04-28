@@ -617,9 +617,6 @@ class DetailsPage extends StatelessWidget {
 
   const DetailsPage({required this.data, required this.title}); // constructor
 
-// title:
-//               const Text('Sydney CBD', style: TextStyle(color: Colors.amber)),
-//           centerTitle: true,
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -663,6 +660,38 @@ class TopFoodieScreen extends StatelessWidget {
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Profile Screen'));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profile', style: TextStyle(fontWeight: FontWeight.bold,)),
+        centerTitle: true,
+      ),
+      body: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage(
+                  'assets/powerHouseMain.png'),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Yan Nathanael Witanto',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'NRP: C14210061',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Kelas: AMBW B',
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
